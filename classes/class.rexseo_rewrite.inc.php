@@ -117,6 +117,20 @@ class RexseoRewrite
       }
 
 
+		// redirect_to_html option
+		if ($REX['ADDON']['seo42']['settings']['redirect_to_html'] && $REX['ADDON']['seo42']['settings']['url_ending'] == '.html') {
+			$requestUriWithHtmlEnding = trim($_SERVER['REQUEST_URI'], '/') . '.html';
+			 
+			if (isset($REXSEO_URLS[$requestUriWithHtmlEnding])) {
+				$redirect = array('id' =>$REXSEO_URLS[$requestUriWithHtmlEnding]['id'],
+                                  'clang' =>$REXSEO_URLS[$requestUriWithHtmlEnding]['clang'],
+                                  'status'=>301);
+
+				return self::redirect($redirect);
+			} 
+		}
+
+
       // CHECK CLOSEST URL MATCH VIA LEVENSHTEIN
       if($this->use_levenshtein)
       {
