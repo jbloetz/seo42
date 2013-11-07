@@ -83,6 +83,7 @@ if ($REX['REDAXO']) {
 		$plugins = OOPlugin::getAvailablePlugins('seo42');
 
 		for ($i = 0; $i < count($plugins); $i++) {
+			$I18N->appendFile(dirname(__FILE__).'/plugins/'.$plugins[$i].'/lang/');
 			array_push($REX['ADDON']['seo42']['SUBPAGES'], array($plugins[$i], $I18N->msg('seo42_' . $plugins[$i])));
 		}
 
